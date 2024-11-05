@@ -1,6 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
+
+public enum KeyColor { 
+    Red,
+    Green, 
+    Gold
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +16,11 @@ public class GameManager : MonoBehaviour
     bool gamePaused = false;
     bool endGame = false;
     bool win = false;
+    public int redKey = 0;
+    public int greenKey = 0;
+    public int goldKey = 0;
+
+    public int points = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +37,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         PauseCheck();
+        PickUpCheck();
     }
+    void PickUpCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("Actual Time: " + timeToEnd);
+            Debug.Log("Key red: " + redKey + " green: " + greenKey + " gold: " + goldKey);
+            Debug.Log("Points: " + points);
+        }
+    }
+
     void Stopper() {
         timeToEnd--;
         Debug.Log("Preostalo vrijeme: " + timeToEnd + " s");
@@ -73,6 +96,31 @@ public class GameManager : MonoBehaviour
         else 
         {
             Debug.Log("Izgubio si! Igraj ponovno?");
+        }
+    }
+
+    public void AddPoints(int point) {
+        points += point;
+    }
+    public void AddTime(int addTime) {
+        timeToEnd += addTime;
+    }
+    public void FreezeTime(int freeze) {
+        CancelInvoke("Stopper");
+        InvokeRepeating("Stopper", freeze, 1);
+    }
+
+    public void AddKey(KeyColor color) {
+        if (color == KeyColor.Red)
+        {
+            redKey++;
+        }
+        else if (color == KeyColor.Green)
+        {
+            greenKey++;
+        }
+        else if (color == KeyColor.Gold) {
+            goldKey++;
         }
     }
 }
