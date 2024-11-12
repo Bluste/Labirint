@@ -365,6 +365,9 @@
 "Assets/Scripts/Key.cs"
 "Assets/Scripts/PickUp.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/Portal.cs"
+"Assets/Scripts/PortalCamera.cs"
+"Assets/Scripts/PortalTeleport.cs"
 -langversion:9.0
 
 /deterministic
