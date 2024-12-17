@@ -105,4 +105,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efdd9727f91af7418213f62799137fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationAxis: 1
   freezeTime: 10

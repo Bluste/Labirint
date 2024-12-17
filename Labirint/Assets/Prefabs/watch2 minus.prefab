@@ -118,5 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bddb2e791c942d47ab62cc5adff04d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationAxis: 1
   time: 5
   addTime: 0

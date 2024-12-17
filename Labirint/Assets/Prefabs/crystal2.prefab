@@ -121,4 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9236771cbd27dea4da1f0fe77b40e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationAxis: 2
   points: 5

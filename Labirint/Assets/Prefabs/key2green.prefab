@@ -117,4 +117,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08662c73d5b99ae4bb3bf9f24ac81dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationAxis: 0
   color: 1
