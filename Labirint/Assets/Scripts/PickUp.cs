@@ -8,6 +8,7 @@ public enum RotationAxis {
 public class PickUp : MonoBehaviour
 {
     public RotationAxis rotationAxis;
+    public AudioClip pickupClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class PickUp : MonoBehaviour
     }
 
     public virtual void Picked() {
+        GameManager.gameManager.PlayClip(pickupClip);
         Debug.Log("PickUp skupljen!");
         Destroy(gameObject);
     }

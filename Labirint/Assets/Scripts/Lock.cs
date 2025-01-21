@@ -5,6 +5,11 @@ using UnityEngine;
 public class Lock : MonoBehaviour
 {
     bool iCanOpen = false;
+    public Renderer myLock;
+    public Material red;
+    public Material green;
+    public Material gold;
+
 
     public Door[] doors;
     public KeyColor myColor;
@@ -14,6 +19,7 @@ public class Lock : MonoBehaviour
     void Start()
     {
         key = GetComponent<Animator>();
+        SetMyColor();
     }
 
     // Update is called once per frame
@@ -70,6 +76,23 @@ public class Lock : MonoBehaviour
         else {
             Debug.Log("Nemate odgovarajuci kljuc!");
             return false;
+        }
+    }
+
+    void SetMyColor() {
+        switch (myColor) {
+            case KeyColor.Red:
+                GetComponent<Renderer>().material = red;
+                myLock.material = red;
+                break;
+            case KeyColor.Green:
+                GetComponent<Renderer>().material = green;
+                myLock.material = green;
+                break;
+            case KeyColor.Gold:
+                GetComponent<Renderer>().material = gold;
+                myLock.material = gold;
+                break;
         }
     }
 }

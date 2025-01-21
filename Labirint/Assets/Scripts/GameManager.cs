@@ -12,6 +12,7 @@ public enum KeyColor {
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
+    AudioSource audioSource;
     [SerializeField] int timeToEnd;
     bool gamePaused = false;
     bool endGame = false;
@@ -19,6 +20,11 @@ public class GameManager : MonoBehaviour
     public int redKey = 0;
     public int greenKey = 0;
     public int goldKey = 0;
+
+    public AudioClip resumeClip;
+    public AudioClip pauseClip;
+    public AudioClip winClip;
+    public AudioClip loseClip;
 
     public int points = 0;
     // Start is called before the first frame update
@@ -30,6 +36,7 @@ public class GameManager : MonoBehaviour
         if (timeToEnd <= 0) {
             timeToEnd = 100;
         }
+        audioSource = GetComponent<AudioSource>();
         InvokeRepeating("Stopper", 2, 1);
     }
 
@@ -64,12 +71,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void PauseGame() {
+        PlayClip(pauseClip);
         Debug.Log("Igra pauzirana");
         Time.timeScale = 0f;
         gamePaused = true;
     }
 
     public void ResumeGame() {
+        PlayClip(resumeClip);
         Debug.Log("Nastavak igre");
         Time.timeScale = 1f;
         gamePaused = false;
@@ -81,7 +90,7 @@ public class GameManager : MonoBehaviour
             {
                 ResumeGame();
             }
-            else 
+            else
             {
                 PauseGame();
             }
@@ -91,10 +100,12 @@ public class GameManager : MonoBehaviour
     public void EndGame() {
         CancelInvoke("Stopper");
         if (win) {
+            PlayClip(winClip);
             Debug.Log("Pobijedio si! Igraj ponovno?");
         }
-        else 
+        else
         {
+            PlayClip(loseClip);
             Debug.Log("Izgubio si! Igraj ponovno?");
         }
     }
@@ -122,5 +133,10 @@ public class GameManager : MonoBehaviour
         else if (color == KeyColor.Gold) {
             goldKey++;
         }
+    }
+
+    public void PlayClip(AudioClip playClip) {
+        audioSource.clip = playClip;
+        audioSource.Play();
     }
 }
